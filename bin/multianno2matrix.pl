@@ -13,7 +13,7 @@ while(<F>){
 my @line=split/\s+/;
 $gene{$line[6]}=$line[6];
 $sam{$sam}=$sam;
-$data{$line[6]}{$sam}}++;
+$data{$line[6]}{$sam}++;
 }
 }
 
@@ -22,7 +22,11 @@ print "\t$sam\n";
 foreach my $gene(sort keys %gene){
 print "$gene";
 foreach my $sam(sort keys %sam){
-print "\t$data{$gene}{$sam}";
+	if(defined $data{$gene}{$sam}){
+		print "\t$data{$gene}{$sam}";
+	}else{
+		print "\t0";
+	}
 }
 print "\n";
 }
